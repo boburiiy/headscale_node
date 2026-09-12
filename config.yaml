@@ -1,0 +1,76 @@
+---
+server:
+  listen_addr: "0.0.0.0"
+  listen_port: 8080
+  grpc_listen_addr: "0.0.0.0"
+  grpc_listen_port: 50443
+  grpc_allow_insecure: false
+  
+private_key_static: ""
+
+ip_prefixes:
+  - fd7a:115c:a1e0:ab12:4843:2222:193c:0/48
+
+derp:
+  server:
+    enabled: false
+  paths:
+    - /etc/headscale/derp.yaml
+  auto_update_enabled: false
+  update_frequency: 24h
+
+disable_check_updates: true
+
+db:
+  type: postgres
+  postgres:
+    host: ${DB_HOST}
+    port: ${DB_PORT}
+    user: ${DB_USER}
+    name: ${DB_NAME}
+    password: ${DB_PASS}
+    ssl_mode: require
+
+api:
+  listen_addr: "0.0.0.0"
+  listen_port: 50443
+  grpc_allow_insecure: false
+
+metrics:
+  enabled: true
+  listen_addr: "127.0.0.1"
+  listen_port: 9090
+
+log:
+  level: info
+  format: json
+
+acl_policy_path: /etc/headscale/acl.yaml
+
+dns:
+  base_domain: headscale.example.com
+  magic_domain: headscale.example.com
+  nameservers:
+    - 8.8.8.8
+    - 8.8.4.4
+  split_dns: false
+
+unix_socket: /var/run/headscale.sock
+unix_socket_permission: "0770"
+
+prefixes:
+  allocation: sequential
+  
+randomize_client_port: false
+
+nodeupdate:
+  enabled: true
+
+oidc:
+  only_start_if_oidc_is_available: false
+
+logtail:
+  enabled: false
+
+policy:
+  mode: database
