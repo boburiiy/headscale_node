@@ -1,0 +1,40 @@
+services:
+  - type: web
+    name: headscale
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: standard
+    
+    # Environment variables from Render environment
+    envVars:
+      - key: DB_HOST
+        scope: run
+      - key: DB_PORT
+        scope: run
+      - key: DB_USER
+        scope: run
+      - key: DB_NAME
+        scope: run
+      - key: DB_PASS
+        scope: run
+
+    # Network configuration
+    healthCheckPath: /
+    healthCheckProtocol: http
+    numInstances: 1
+    
+    # Resource limits
+    maxInstanceCount: 1
+    
+    # Expose ports
+    ports:
+      - port: 8080
+        protocol: HTTP
+      - port: 50443
+        protocol: UDP
+    
+    # Start command
+    startCommand: headscale serve
+
+    # Auto-deploy on git push
+    autoDeploy: true
