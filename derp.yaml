@@ -1,0 +1,17 @@
+# DERP (Designated Encrypted Relay for Packets) Server Configuration
+# All relay functionality disabled - traffic only through direct connection
+
+regions:
+  999:
+    regionid: 999
+    regioncode: "local"
+    regionname: "Local - Direct Only"
+    nodes:
+      - name: "no-relay"
+        regionid: 999
+        hostname: "disabled"
+        ipv4: "127.0.0.1"
+        ipv6: "::1"
+        insecure: false
+        stun: false
+        derpport: 0
