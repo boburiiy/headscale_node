@@ -1,0 +1,10 @@
+.git
+.gitignore
+.github
+.dockerignore
+*.md
+.env
+.env.local
+node_modules
+__pycache__
+.DS_Store
