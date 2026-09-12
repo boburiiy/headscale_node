@@ -1,0 +1,25 @@
+# Headscale Access Control List (ACL) Policy
+# Direct connection only - no relay fallback
+
+acls:
+  # Allow all direct connections between authenticated devices
+  - action: accept
+    src:
+      - "*"
+    dst:
+      - "*:*"
+
+groups:
+  group:admin:
+    - email1@example.com
+    - email2@example.com
+
+hosts:
+  host1: 100.64.0.1/32
+  host2: 100.64.0.2/32
+
+tagOwners:
+  tag:prod:
+    - group:admin
+  tag:dev:
+    - group:admin
